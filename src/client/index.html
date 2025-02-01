@@ -5,5 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <button class="type" ="button" onclick="fetchData()">APIの実行</button>
+    <div id="ret_api"></div>
+
+    <script>
+      async function fetchData() {
+        try {
+          const response = await fetch('api');
+          document.getElementById('ret_api').textContent =
+            await response.text();
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    </script>
+  </body>
 </html>
