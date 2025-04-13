@@ -12,14 +12,12 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  create(createUserDto: CreateUserDto) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    createUserDto;
-    return 'This action adds a new user';
+  async create(createUserDto: CreateUserDto): Promise<CreateUserDto & User> {
+    return await this.usersRepository.save(createUserDto);
   }
 
-  findAll() {
-    return this.usersRepository.find();
+  async findAll(): Promise<User[]> {
+    return await this.usersRepository.find();
   }
 
   findOne(id: number) {
