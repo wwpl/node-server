@@ -3,41 +3,47 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { App } from 'supertest/types';
 import { UsersModule } from './../../src/users/users.module';
-import { TypeOrmModuleDefine } from './../../src/app.module';
+import { TypeOrmModuleDefineTest } from './../../src/app.module';
 import { CreateUserDto } from './../../src/users/dto/create-user.dto';
+import { User } from './../../src/users/entities/user.entity';
 
 describe('UsersController (e2e)', () => {
   let app: INestApplication<App>;
-  const users = {
+  const createUser = {
     firstName: 'FirstName #1',
     lastName: 'LastName #1',
+  };
+  const user = {
+    id: 1,
+    firstName: createUser.firstName,
+    lastName: createUser.lastName,
   };
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [TypeOrmModuleDefine, UsersModule],
+      imports: [TypeOrmModuleDefineTest, UsersModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
     await app.init();
   });
 
+  afterEach(async () => {
+    // TODO DBをくらいする処理を追加する
+    await app.close();
+  });
+
   it('/users (POST)', () => {
     return request(app.getHttpServer())
       .post('/users')
-      .send(users as CreateUserDto)
+      .send(createUser as CreateUserDto)
       .expect(201)
       .then(({ body }) => {
-        expect(body).toEqual(users);
+        expect(body).toEqual(user as User);
       });
   });
 
   it('/users (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/users')
-      .expect(200)
-      .expect(
-        '{"message":"Cannot GET /api/users","error":"Not Found","statusCode":404}',
-      );
+    return request(app.getHttpServer()).get('/users').expect(200).expect([]);
   });
 });
