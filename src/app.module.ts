@@ -6,6 +6,7 @@ import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 const TypeOrmModuleDefine = TypeOrmModule.forRoot({
   type: 'postgres',
@@ -16,6 +17,7 @@ const TypeOrmModuleDefine = TypeOrmModule.forRoot({
   database: 'db01',
   entities: [User],
   synchronize: true,
+  namingStrategy: new SnakeNamingStrategy(),
 });
 
 export const TypeOrmModuleDefineTest = TypeOrmModule.forRoot({
