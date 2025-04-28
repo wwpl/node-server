@@ -18,8 +18,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest  --detectOpenHandles --config ./test/jest-e2e.json",
-    "db:create": "psql -h service_postgres_dfasdfasd -p 5432 -U postgres -c 'create database db01'",
-    "db:drop": "psql -h service_postgres_dfasdfasd -p 5432 -U postgres -c 'drop database db01'",
+    "db:create": "psql -h service_postgres_efasdfasd -p 5432 -U postgres -c 'create database db01'",
+    "db:drop": "psql -h service_postgres_efasdfasd -p 5432 -U postgres -c 'drop database db01'",
     "create:data": "ts-node ./src/prepare-data/main.ts"
   },
   "dependencies": {
@@ -46,7 +46,7 @@
     "@swc/core": "^1.10.7",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.10.7",
+    "@types/node": "^22.15.3",
     "@types/supertest": "^6.0.2",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
