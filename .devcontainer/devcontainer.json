@@ -1,0 +1,17 @@
+{
+    "name": "Node Project Nonfunction",
+    "dockerComposeFile": "compose.yml",
+    "service": "service_node_efasdfasd",
+    "workspaceFolder": "/tmp/work",
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "editor.tabSize": 2
+        },
+        "extensions": [
+            "esbenp.prettier-vscode"
+        ]
+      }
+    }
+  }
+  

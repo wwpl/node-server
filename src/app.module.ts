@@ -10,7 +10,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 const TypeOrmModuleDefine = TypeOrmModule.forRoot({
   type: 'postgres',
-  host: 'service_postgres_dfasdfasd',
+  host: 'service_postgres_efasdfasd',
   port: 5432,
   username: 'postgres',
   password: 'postgres',
@@ -22,7 +22,7 @@ const TypeOrmModuleDefine = TypeOrmModule.forRoot({
 
 export const TypeOrmModuleDefineTest = TypeOrmModule.forRoot({
   type: 'postgres',
-  host: 'service_postgres_dfasdfasd',
+  host: 'service_postgres_efasdfasd',
   port: 5432,
   username: 'postgres',
   password: 'postgres',
