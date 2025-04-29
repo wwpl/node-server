@@ -3,42 +3,16 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
-import { User } from './users/entities/user.entity';
-import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-
-const TypeOrmModuleDefine = TypeOrmModule.forRoot({
-  type: 'postgres',
-  host: 'service_postgres_efasdfasd',
-  port: 5432,
-  username: 'postgres',
-  password: 'postgres',
-  database: 'db01',
-  entities: [User],
-  synchronize: true,
-  namingStrategy: new SnakeNamingStrategy(),
-});
-
-export const TypeOrmModuleDefineTest = TypeOrmModule.forRoot({
-  type: 'postgres',
-  host: 'service_postgres_efasdfasd',
-  port: 5432,
-  username: 'postgres',
-  password: 'postgres',
-  database: 'db01',
-  entities: [User],
-  synchronize: true,
-  dropSchema: true,
-});
+import { DatabaseModule } from './databases/database.module';
 
 @Module({
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '.', 'client'),
     }),
-    TypeOrmModuleDefine,
     UsersModule,
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],

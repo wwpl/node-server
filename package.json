@@ -18,12 +18,13 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest  --detectOpenHandles --config ./test/jest-e2e.json",
-    "db:create": "psql -h service_postgres_efasdfasd -p 5432 -U postgres -c 'create database db01'",
-    "db:drop": "psql -h service_postgres_efasdfasd -p 5432 -U postgres -c 'drop database db01'",
+    "db:create": "psql -h service_postgres -p 5432 -U postgres -c 'create database db01'",
+    "db:drop": "psql -h service_postgres -p 5432 -U postgres -c 'drop database db01'",
     "create:data": "ts-node ./src/prepare-data/main.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.0.1",

@@ -3,9 +3,9 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { App } from 'supertest/types';
 import { UsersModule } from './../../src/users/users.module';
-import { TypeOrmModuleDefineTest } from './../../src/app.module';
 import { CreateUserDto } from './../../src/users/dto/create-user.dto';
 import { User } from './../../src/users/entities/user.entity';
+import { DatabaseModule } from './../../src/databases/database.module';
 
 describe('UsersController (e2e)', () => {
   let app: INestApplication<App>;
@@ -21,7 +21,7 @@ describe('UsersController (e2e)', () => {
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [TypeOrmModuleDefineTest, UsersModule],
+      imports: [DatabaseModule, UsersModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
