@@ -24,7 +24,7 @@ execCommand(`\\copy "${tableName}" from '${filePath}' (format csv,header)`);
 
 function execCommand(command: string) {
   exec(
-    `export PGPASSWORD=postgres && psql -h service_postgres_efasdfasd -p 5432 -U postgres -d db01 -c '${command}';`,
+    `export PGPASSWORD=postgres && psql -h service_postgres -p 5432 -U postgres -d db01 -c '${command}';`,
     (error, stdout, stderr) => {
       if (error) {
         console.error(`エラーが発生しました: ${error.message}`);

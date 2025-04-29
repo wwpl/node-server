@@ -6,7 +6,12 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
+      imports: [
+        ConfigModule.forRoot({
+          isGlobal: true, // グローバルモジュールとして設定
+          envFilePath: '.env', // カスタムパスを使用する場合は指定
+        }),
+      ],
       useFactory: (configService: ConfigService) => {
         return {
           type: 'postgres',
