@@ -7,18 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-
-const TypeOrmModuleDefine = TypeOrmModule.forRoot({
-  type: 'postgres',
-  host: 'service_postgres_efasdfasd',
-  port: 5432,
-  username: 'postgres',
-  password: 'postgres',
-  database: 'db01',
-  entities: [User],
-  synchronize: true,
-  namingStrategy: new SnakeNamingStrategy(),
-});
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { DatabaseModule } from './databases/database.module';
 
 export const TypeOrmModuleDefineTest = TypeOrmModule.forRoot({
   type: 'postgres',
@@ -37,10 +27,14 @@ export const TypeOrmModuleDefineTest = TypeOrmModule.forRoot({
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '.', 'client'),
     }),
-    TypeOrmModuleDefine,
     UsersModule,
+    ConfigModule.forRoot({
+      isGlobal: true, // グローバルモジュールとして設定
+      envFilePath: '.env', // カスタムパスを使用する場合は指定
+    }),
+    DatabaseModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ConfigService],
 })
 export class AppModule {}
